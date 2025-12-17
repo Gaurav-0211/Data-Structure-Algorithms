@@ -1,7 +1,7 @@
 package org.dsa.Arrays.slidingWindow;
 
 
-public class EasySliding {
+public class ArraySliding {
     // Que to find maximum subarray sum of length k
     public static int subarraySum(int[] arr,int k){
         int left = 0;
