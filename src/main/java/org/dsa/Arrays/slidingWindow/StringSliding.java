@@ -16,7 +16,7 @@ public class StringSliding {
             
             while(map.get(ch) > 1){
                 char s = str.charAt(left);
-                map.put(ch, map.get(s) - 1);
+                map.put(s, map.get(s) - 1);
                 
                 if(map.get(s) == 0){
                     map.remove(s);
@@ -40,7 +40,7 @@ public class StringSliding {
 
             while(map.size() > k){
                 char s = str.charAt(left);
-                map.put(ch, map.get(s) -1 );
+                map.put(s, map.get(s) -1 );
 
                 if(map.get(s) == 0){
                     map.remove(s);
@@ -54,8 +54,8 @@ public class StringSliding {
 
     public static void main(String[] args) {
         String str = "abcabcdabcabc";
-        //System.out.println(longestSubstringWithoutRepeating(str));
-        System.out.println(longestSubstringWithKDistinctCharacter(str, 3));
+        // System.out.println(longestSubstringWithoutRepeating(str));
+        // System.out.println(longestSubstringWithKDistinctCharacter(str, 3));
         
     }
 }
