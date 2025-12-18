@@ -1,5 +1,7 @@
 package org.dsa.Arrays.slidingWindow;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -52,10 +54,44 @@ public class StringSliding {
         return ans;
     }
 
+    // K size substring with distinct characters
+    public static List<String> KSizeSubstringWithDistinct(String str, int k){
+        int left = 0;
+        List<String> ans = new ArrayList<>();
+        Map<Character, Integer> map = new HashMap<>();
+
+        for(int i = 0; i< str.length(); i++){
+            char ch = str.charAt(i);
+            map.put(ch, map.getOrDefault(ch, 0)+1);
+
+            while((i - left + 1) > k || map.get(ch) > 1){
+                char sh = str.charAt(left);
+                map.put(sh, map.get(sh) - 1);
+
+                if(map.get(ch) == 0){
+                    map.remove(sh);
+                }
+                left++;
+            }
+            if ((i - left + 1) == k && map.size() == k) {
+                ans.add(str.substring(left, i + 1));
+            }
+        }
+        return ans;
+    }
+
+    public static void printList(List<String> ans){
+        for(String s : ans){
+            System.out.println(s);
+        }
+    }
+
     public static void main(String[] args) {
         String str = "abcabcdabcabc";
         // System.out.println(longestSubstringWithoutRepeating(str));
         // System.out.println(longestSubstringWithKDistinctCharacter(str, 3));
+        List<String> ans = KSizeSubstringWithDistinct(str, 3);
+        printList(ans);
         
     }
 }
