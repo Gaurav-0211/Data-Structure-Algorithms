@@ -1,9 +1,6 @@
 package org.dsa.Arrays.slidingWindow;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public class StringSliding {
     // Longest substring without repeating characters
@@ -84,6 +81,37 @@ public class StringSliding {
         for(String s : ans){
             System.out.println(s);
         }
+    }
+
+    // Find all anagrams of pattern in a string
+    public static List<Integer> allAnagramPatterns(String s, String p){
+        List<Integer> result = new ArrayList<>();
+
+        if (s.length() < p.length()) {
+            return result;
+        }
+
+        int[] pFreq = new int[26];
+        int[] windowFreq = new int[26];
+
+        for (char c : p.toCharArray()) {
+            pFreq[c - 'a']++;
+        }
+
+        int windowSize = p.length();
+
+        for (int i = 0; i < s.length(); i++) {
+            windowFreq[s.charAt(i) - 'a']++;
+            if (i >= windowSize) {
+                windowFreq[s.charAt(i - windowSize) - 'a']--;
+            }
+
+            if (Arrays.equals(pFreq, windowFreq)) {
+                result.add(i - windowSize + 1);
+            }
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
