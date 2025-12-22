@@ -114,6 +114,53 @@ public class StringSliding {
         return result;
     }
 
+    // Find all permutations for a given String
+    public static List<Integer> findAllPermutations(String s, String p){
+
+        List<Integer> result = new ArrayList<>();
+
+        if (s == null || p == null || s.length() < p.length()) {
+            return result;
+        }
+        Map<Character, Integer> freqMap = new HashMap<>();
+        for (char ch : p.toCharArray()) {
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+        }
+
+        int windowStart = 0;
+        int matched = 0;
+
+        for (int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+            char rightChar = s.charAt(windowEnd);
+
+            if (freqMap.containsKey(rightChar)) {
+                freqMap.put(rightChar, freqMap.get(rightChar) - 1);
+                if (freqMap.get(rightChar) == 0) {
+                    matched++;
+                }
+            }
+
+            if (matched == freqMap.size()) {
+                result.add(windowStart);
+            }
+
+            if (windowEnd >= p.length() - 1) {
+                char leftChar = s.charAt(windowStart);
+                windowStart++;
+
+                if (freqMap.containsKey(leftChar)) {
+                    if (freqMap.get(leftChar) == 0) {
+                        matched--;
+                    }
+                    freqMap.put(leftChar, freqMap.get(leftChar) + 1);
+                }
+            }
+        }
+
+        return result;
+
+    }
+
     public static void main(String[] args) {
         String str = "abcabcdabcabc";
         // System.out.println(longestSubstringWithoutRepeating(str));
