@@ -71,6 +71,52 @@ class SinglyLinkedList{
         }
         System.out.println();
     }
+    // Delete from start
+    void deleteStart(){
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }else{
+            head = head.next;
+        }
+    }
+    // Delete from End
+    void deleteEnd(){
+        if(head == null){
+            System.out.println("List is Empty");
+        }
+        else{
+            Node curr = head;
+            while(curr.next.next != null){
+                curr =curr.next;
+            }
+            curr.next = null;
+        }
+    }
+    // Delete from given position
+    void deleteAtPos(int pos){
+
+        if(pos <= 0){
+            System.out.println("Invalid Position");
+            return;
+        }
+        if(pos == 1){
+            deleteStart();
+            return;
+        }
+
+        if(head == null){
+            System.out.println("List is Empty");
+            return;
+        }
+
+        Node curr = head;
+        for(int i = 1; i<pos-1 && curr != null; i++){
+            curr = curr.next;
+        }
+        curr.next = curr.next.next;
+    }
+
 }
 
 public class SinglyList {
@@ -82,6 +128,10 @@ public class SinglyList {
         s.insert(97);
         s.insertStart(8);
         s.insertPos(14,3);
+        s.display();
+        s.deleteStart();
+        s.deleteEnd();
+        s.deleteAtPos(2);
         s.display();
     }
 }
