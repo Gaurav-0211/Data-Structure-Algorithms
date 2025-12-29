@@ -117,6 +117,23 @@ class SinglyLinkedList{
         curr.next = curr.next.next;
     }
 
+    // Find an element position in a List
+    void elementPos(int val){
+        Node curr = head;
+        int pos = 0;
+
+        while(curr.data != val && curr.next != null){
+            pos++;
+            curr = curr.next;
+        }
+        if(curr.next ==  null){
+            System.out.println("Value not exist in the list");
+        }
+        else{
+            System.out.println(pos+1);
+        }
+    }
+
 }
 
 public class SinglyList {
