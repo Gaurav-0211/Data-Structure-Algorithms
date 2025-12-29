@@ -134,6 +134,31 @@ class SinglyLinkedList{
         }
     }
 
+    // Find Middle element in a List
+    void getMiddle(){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        System.out.println(slow.data);
+    }
+
+    // Find size of a List
+    int listLength(){
+        if(head ==  null){
+            return 0;
+        }
+        int num = 0;
+        Node curr = head;
+        while(curr != null){
+            num ++;
+            curr = curr.next;
+        }
+        return num;
+    }
+
 }
 
 public class SinglyList {
